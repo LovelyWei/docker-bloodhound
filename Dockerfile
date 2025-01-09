@@ -1,11 +1,11 @@
-FROM debian:stable-slim
+FROM debian:buster-slim
 LABEL org.opencontainers.image.authors="https://github.com/belane" \
       org.opencontainers.image.description="BloodHound Docker Ready to Use" \
       org.opencontainers.image.source="https://github.com/belane/docker-bloodhound" \
       org.opencontainers.image.title="docker-bloodhound" \
       org.opencontainers.image.version="0.2.1"
 ARG neo4j=4.4.19
-ARG bloodhound=4.2.0
+ARG bloodhound=4.3.1
 
 # Base packages
 RUN apt-get update -qq &&\
@@ -35,7 +35,7 @@ RUN wget -nv -O - https://debian.neo4j.com/neotechnology.gpg.key | tee /etc/apt/
     apt-get install -y -qq neo4j=1:$neo4j
 
 # BloodHound
-RUN wget https://github.com/BloodHoundAD/BloodHound/releases/download/$bloodhound/BloodHound-linux-x64.zip -nv -P /tmp &&\
+RUN wget https://github.com/SpecterOps/BloodHound-Legacy/releases/download/v$bloodhound/BloodHound-linux-x64.zip -nv -P /tmp &&\
     unzip /tmp/BloodHound-linux-x64.zip -d /opt/ &&\
     mkdir /data &&\
     chmod +x /opt/BloodHound-linux-x64/BloodHound
