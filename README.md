@@ -10,7 +10,7 @@
 
 ```shell
 xhost +local:$(id -nu)
-docker run -it \
+docker run -it --shm-size=1g \
   -p 7474:7474 \
   -e DISPLAY=unix$DISPLAY \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -19,3 +19,5 @@ docker run -it \
   --name bloodhound <image id>
 ```
 启动
+
+在 Kali 2024.4 中运行成功
