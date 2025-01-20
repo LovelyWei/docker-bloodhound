@@ -1,3 +1,15 @@
+## TLDR
+```sh
+xhost +local:$(id -nu)
+docker run -it --shm-size=1g \     
+  -p 7474:7474 \
+  -e DISPLAY=unix$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  --device=/dev/dri:/dev/dri \
+  -v $(pwd)/bh-data:/data \
+  --name bloodhound chokoreto/bloodhound431
+```
+
 原镜像 README 参考 https://github.com/belane/docker-bloodhound
 
 将原本的 bloodhound 从 4.20 升到了 4.31
